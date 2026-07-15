@@ -1,8 +1,13 @@
 # REAPER Terminal
 
-REAPER Terminal is a small, native C++ REAPER extension that opens the user's
-installed terminal application in the active project directory. It deliberately
-does not emulate a terminal, embed an AI client, or alter the REAPER project.
+REAPER Terminal is a small, native C++ REAPER extension that launches the user's
+installed terminal application in the active REAPER project directory and exports
+useful REAPER context to that terminal.
+
+It is intentionally **not** an embedded or docked terminal emulator. It does not
+recreate a terminal inside REAPER, embed an AI client, or alter the REAPER project.
+Instead, it gives REAPER a JetBrains-style "open terminal here" workflow using the
+terminal already installed on each supported platform.
 
 The action is named **REAPER Terminal: Open native terminal** and an
 **Extensions > Open REAPER Terminal** menu item is also registered.
