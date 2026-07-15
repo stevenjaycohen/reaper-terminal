@@ -6,7 +6,7 @@ useful REAPER context to that terminal.
 
 It is intentionally **not** an embedded or docked terminal emulator. It does not
 recreate a terminal inside REAPER, embed an AI client, or alter the REAPER project.
-Instead, it gives REAPER a JetBrains-style "open terminal here" workflow using the
+Instead, it gives REAPER an IDE-style "open terminal here" workflow using the
 terminal already installed on each supported platform.
 
 The action is named **REAPER Terminal: Open native terminal** and an
