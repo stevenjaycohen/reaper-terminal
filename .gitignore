@@ -1,0 +1,10 @@
+/build/
+/build-*/
+/third_party/
+/.cache/
+*.swp
+*.user
+.DS_Store
+reaper_reaper_terminal.dll
+reaper_reaper_terminal.dylib
+reaper_reaper_terminal.so

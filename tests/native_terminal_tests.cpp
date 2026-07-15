@@ -1,0 +1,5 @@
+#include "native_terminal.h"
+#include <cstdlib>
+#include <iostream>
+static void expect(bool ok,const char* message){if(!ok){std::cerr<<"FAIL: "<<message<<'\n';std::exit(1);}}
+int main(int argc,char**){ReaperTerminalContext c{"/music/song","/music/song/mix.rpp","/home/test/.config/REAPER","7.77","0.2.0"};auto e=terminalEnvironment(c);expect(e["REAPER_TERMINAL"]=="1","host marker");expect(e["REAPER_PROJECT_FILE"]==c.projectFile,"project file");expect(e["REAPER_PROJECT_DIR"]==c.workingDirectory,"project directory");expect(e["REAPER_RESOURCE_DIR"]==c.resourceDirectory,"resource directory");expect(e["REAPER_API_DOCS"].find("reaper.fm")!=std::string::npos,"API docs");expect(e["REAPER_EXTENSION_SDK"].find("plugin")!=std::string::npos,"extension SDK");expect(e["TERM_PROGRAM"]=="REAPER Terminal","terminal identity");if(argc>1){c.workingDirectory="/tmp";c.projectFile.clear();std::string error;expect(launchNativeTerminal(c,error),error.c_str());}std::cout<<"all native terminal tests passed\n";}
