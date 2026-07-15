@@ -12,6 +12,29 @@ terminal already installed on each supported platform.
 The action is named **REAPER Terminal: Open native terminal** and an
 **Extensions > Open REAPER Terminal** menu item is also registered.
 
+## Example uses
+
+Opening a terminal directly in the current project directory can be useful for:
+
+- inspecting, searching, renaming, copying, or organizing project and media files;
+- running `git` commands for versioned `.rpp` projects, scripts, presets, or related
+  documentation;
+- opening project files, notes, scripts, or metadata in terminal editors such as
+  Vim;
+- using `ffmpeg`, `ffprobe`, SoX, or other audio utilities on project media;
+- running project-specific shell scripts, Python tools, build commands, or batch
+  processing workflows;
+- synchronizing or backing up project files with tools such as `rsync`;
+- calculating checksums or comparing files during delivery and archival work;
+- inspecting the REAPER resource directory and developing or testing ReaScripts and
+  native extensions;
+- using any command-line assistant or other interactive CLI tool with the current
+  REAPER project context available through environment variables.
+
+REAPER Terminal does not implement these workflows itself. It simply opens the
+user's normal terminal in the right place and makes REAPER context available to
+whatever tools the user chooses.
+
 ## Behavior
 
 For a saved project, the terminal starts in the directory containing its `.rpp`
@@ -45,12 +68,14 @@ assistant-specific setting is generated.
 
 To start a program automatically after the context and header are initialized,
 choose **Extensions > REAPER Terminal settings...** and enter a startup command
-such as `codex`. The setting is stored persistently by REAPER. It is interpreted
-as a shell command, so arguments are supported (for example, `codex --search`).
-When the startup program exits, the terminal remains open at the normal login
-shell. Clear the setting for the default shell-only behavior. The setting is
-also available as **REAPER Terminal: Configure startup command** in the Actions
-list.
+such as `vim`, `git status`, a project script, or another command-line tool. The
+setting is stored persistently by REAPER. It is interpreted as a shell command,
+so arguments are supported. When the startup program exits, the terminal remains
+open at the normal login shell. Clear the setting for the default shell-only
+behavior. The setting is also available as **REAPER Terminal: Configure startup
+command** in the Actions list.
+
+### CLI assistants
 
 Terminal scrollback is not automatically included in a CLI assistant's model
 context. To start Codex and direct it to the exported REAPER metadata, use this
