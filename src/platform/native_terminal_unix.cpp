@@ -18,7 +18,9 @@ std::string bootstrap(const ReaperTerminalContext& c){
   std::string script;
   for(const auto& [key,value]:terminalEnvironment(c))script+="export "+key+"="+quote(value)+";";
   script+="printf '\\nREAPER Terminal %s — REAPER %s\\nDirectory: %s\\nProject: %s\\nAPI: %s\\nExtension SDK: %s\\nSDK source: %s\\n\\n' "+quote(c.extensionVersion)+" "+quote(c.reaperVersion)+" "+quote(c.workingDirectory)+" "+quote(c.projectFile.empty()?"(unsaved)":c.projectFile)+" "+quote("https://www.reaper.fm/sdk/reascript/reascripthelp.html")+" "+quote("https://www.reaper.fm/sdk/plugin/plugin.php")+" "+quote("https://github.com/justinfrankel/reaper-sdk")+";";
-  script+="cd "+quote(c.workingDirectory)+";exec \"${SHELL:-/bin/sh}\" -l";return script;
+  script+="cd "+quote(c.workingDirectory)+";";
+  if(!c.startupCommand.empty())script+="eval "+quote(c.startupCommand)+";";
+  script+="exec \"${SHELL:-/bin/sh}\" -l";return script;
 }
 [[noreturn]] void run(const ReaperTerminalContext& c){
   setsid();if(!c.workingDirectory.empty())chdir(c.workingDirectory.c_str());

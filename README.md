@@ -38,6 +38,26 @@ These variables work with shells, scripts, editors, build tools, and any current
 or future CLI assistant. No `AGENTS.md`, repository file, prompt, or
 assistant-specific setting is generated.
 
+To start a program automatically after the context and header are initialized,
+choose **Extensions > REAPER Terminal settings...** and enter a startup command
+such as `codex`. The setting is stored persistently by REAPER. It is interpreted
+as a shell command, so arguments are supported (for example, `codex --search`).
+When the startup program exits, the terminal remains open at the normal login
+shell. Clear the setting for the default shell-only behavior. The setting is
+also available as **REAPER Terminal: Configure startup command** in the Actions
+list.
+
+Terminal scrollback is not automatically included in a CLI assistant's model
+context. To start Codex and direct it to the exported REAPER metadata, use this
+startup command:
+
+```sh
+codex "You are running inside REAPER Terminal. Inspect the REAPER_* environment variables to learn the current REAPER project context before helping me."
+```
+
+This gives Codex an initial instruction to inspect the same tool-neutral context
+that is available to every program launched by REAPER Terminal.
+
 ## Platform launchers
 
 - Linux tries `kgx`, GNOME Terminal, Konsole, Xfce Terminal,
